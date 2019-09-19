@@ -28,6 +28,12 @@
                 h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
         })(document);
     </script>
+    <meta property="og:url" content="https://ryo-a.github.io/jp-power-outage"" />
+    <meta property="og:title" content="jp-power-outage: 停電世帯数情報API（非公式）" />
+    <meta property="og:image" content="https://ryo-a.github.io/jp-power-outage/contents/img/ogp.png" />
+    <meta property="og:description" content="電力会社の停電情報（地域と世帯数）を10分おきに取得し、JSONで配信するAPIです。個人が運用する非公式のAPIであり、電力会社公式のものではないことにご留意ください。" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geo_vitya" />
 </head>
 
 <body>
@@ -41,7 +47,8 @@
             <h1 class="logona">停電世帯数情報API（非公式）</h1>
             <p class="logona">電力会社の停電情報（地域と世帯数）を10分おきに取得し、JSONで配信するAPIです。現在は東京電力（東京電力パワーグリッド）管内の情報のみ取得できます。
                 <br>個人が運用する非公式のAPIであり、電力会社公式のものではないことにご留意ください。</p>
-            <p class="logona">なお、このページ（ryo-a.github.io/jp-power-outage）はアクセス解析にGoogle Analyticsを利用しています。API部分ではユーザのトラッキングを行っていません。</p>
+            <p class="logona">なお、このページ（ryo-a.github.io/jp-power-outage）はアクセス解析にGoogle
+                Analyticsを利用しています。API部分ではユーザのトラッキングを行っていません。</p>
             <h2 class="logona">エンドポイント</h2>
             <h3 class="logona">最新情報（10分おき更新）</h3>
             <div class="uri border-black">
