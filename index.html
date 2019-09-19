@@ -1,12 +1,100 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148327479-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148327479-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+    <link rel="stylesheet" href="./contents/css/style.min.css">
+    <title>jp-power-outage</title>
+    <script>
+        (function (d) {
+            var config = {
+                kitId: 'fcs0izm',
+                scriptTimeout: 3000,
+                async: true
+            },
+                h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+        })(document);
+    </script>
 </head>
+
 <body>
-    It works on GitHub Pages
+    <div class="container">
+        <div class="hero">
+            <img src="./contents/img/logo.svg"
+                alt="jp-power-outage API: Developer Friendly API of Power Outage Information in Japan">
+            <p class="din">ryo-a.github.io/jp-power-outage</p>
+        </div>
+        <div class="contents">
+            <h1 class="logona">停電世帯数情報API（非公式）</h1>
+            <p class="logona">電力会社の停電情報（地域と世帯数）を10分おきに取得し、JSONで配信するAPIです。現在は東京電力（東京電力パワーグリッド）管内の情報のみ取得できます。
+                <br>個人が運用する非公式のAPIであり、電力会社公式のものではないことにご留意ください。</p>
+            <p class="logona">なお、このページ（ryo-a.github.io/jp-power-outage）はアクセス解析にGoogle Analyticsを利用しています。API部分ではユーザのトラッキングを行っていません。</p>
+            <h2 class="logona">エンドポイント</h2>
+            <h3 class="logona">最新情報（10分おき更新）</h3>
+            <div class="uri border-black">
+                https://ryo-a.github.io/jp-power-outage/api/v1/latest/都道府県名.json
+            </div>
+            <p class="logona">（例）群馬県のデータ</p>
+            <div class="uri">
+                https://ryo-a.github.io/jp-power-outage/api/v1/latest/gunma.json
+            </div>
+            <p class="logona">東電管内: ibaraki, tochigi, gunma, saitama, chiba, tokyo, kanagawa, yamanashi, shizuoka</p>
+            <br>
+            <h3 class="logona">過去の情報（およそ2ヶ月保存予定）</h3>
+            <div class="uri border-black">
+                https://ryo-a.github.io/jp-power-outage/api/v1/old/YYYY/MM/DD/都道府県名/都道府県名-HHmm.json
+            </div>
+            <p class="logona">（例）2019年9月20日 0:10 JST の千葉県のデータ</p>
+            <div class="uri">
+                https://ryo-a.github.io/jp-power-outage/api/v1/old/2019/09/20/chiba/chiba-0010.json
+            </div>
+            <h2 class="logona">取得できる要素</h2>
+            <p class="logona">（例）2019年9月20日 3:10 JST の群馬県のデータ</p>
+            <pre class="uri">
+{
+    "群馬県": {
+        "number_str": "約200軒",
+        "number": 200,
+        "timestamp": "2019-09-20T03:00:02.268679",
+        "source": "http://teideninfo.tepco.co.jp/html/00000000000.html",
+        "author": "出典:東京電力パワーグリッド Webサイト / 非公式API: https://ryo-a.github.io/jp-power-outage/",
+        "cities": {
+            "下仁田町": {
+                "number_str": "約200軒",
+                "number": 200,
+                "areas": {
+                    "大字西野牧": {
+                        "number_str": "約200軒",
+                        "number": 200
+                    }
+                }
+            }
+        }
+    }
+}
+            </pre>
+
+            <p class="logona">number_str: 電力会社のページに記載されている文字列（「約」や「軒」などを含む）。String。<br>
+                number: number_strの内容を数値型にして抜き出したもの。Integer。<br>
+                less_than: 「100軒未満」の場合にtrueとなる。Boolean。</p>
+
+            <h2 class="logona">運用者</h2>
+            <p class="logona"><a href="https://github.com/ryo-a">@ryo-a</a></p>
+        </div>
+    </div>
 </body>
+
 </html>
